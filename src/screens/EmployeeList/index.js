@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {StatusBar, ScrollView, TouchableWithoutFeedback,TouchableOpacity} from 'react-native';
 import {Box, Text, Divider, Card, CardItem, Image} from 'native-base';
 import Header from '../../components/Header';
@@ -7,19 +7,31 @@ import {SIZES} from '../../utils/Fonts';
 import ActionSheet from 'react-native-actions-sheet';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { getList } from '../../utils/SharedFunctions/SharedFunctions';
+import { Apicontants } from '../../constants/Api';
 
 const EmployeeList = props => {
   const [showFilters, setShowFilters] = useState(true);
   const actionSheetRef = useRef(null);
   const [showPicker, setShowPicker] = useState(false);
+  const [employee,setEmployee] = useState([])
 
-  const goToServiceDetails = () => {
-    props.navigation.navigate('ServiceDetails');
+  const getAllEmployee = async () =>{
+    let res = await getList(Apicontants.user.getAllEmployee)
+    setEmployee(res)
+  }
+
+  useEffect(()=>{
+    getAllEmployee()
+  },[])
+
+  const goToServiceDetails = (emp) => {
+    props.navigation.navigate('EmployeeServiceList',{userId:emp?.userId});
   };
 
-  const ProfileItem = () => {
+  const ProfileItem = ({emp}) => {
     return (
-      <TouchableWithoutFeedback onPress={goToServiceDetails}>
+      <TouchableWithoutFeedback onPress={()=>goToServiceDetails(emp)}>
         <Card backgroundColor={Colors.white} padding={1} marginTop={SIZES(3)}>
           <Box display={'flex'} flexDirection={'row'} alignItems={'center'} justifyContent={'center'}>
             <Box>
@@ -34,28 +46,28 @@ const EmployeeList = props => {
                 fontFamily={'Montserrat-Regular'}
                 color={Colors.black}
                 fontSize={SIZES(11)}>
-                    EMP0001(Unit-1)
+                    {emp?.empCode} [{emp?.location || "-"}]
               </Text>
               <Text
                 textAlign={'justify'}
                 fontFamily={'Montserrat-Regular'}
                 color={Colors.lightGrey3}
                 fontSize={SIZES(10)}>
-                    Name: Rahul
+                    Name: {emp?.name}
               </Text>
               <Text
                 textAlign={'justify'}
                 fontFamily={'Montserrat-Regular'}
                 color={Colors.lightGrey3}
                 fontSize={SIZES(10)}>
-                    Phone: 9999999999
+                    Phone: {emp?.mobile}
               </Text>
               <Text
                 textAlign={'justify'}
                 fontFamily={'Montserrat-Regular'}
                 color={Colors.black}
                 fontSize={SIZES(10)}>
-                    Department: Electrical
+                    Department: {emp?.department}
               </Text>
               <Box
                 borderBottomWidth={1}
@@ -230,11 +242,12 @@ const EmployeeList = props => {
       <ScrollView
         style={styles.scrollviewContainer}
         showsVerticalScrollIndicator={false}>
+          {employee?.map((e,i)=> <ProfileItem emp={e}/>)}
+        {/* <ProfileItem />
         <ProfileItem />
         <ProfileItem />
         <ProfileItem />
-        <ProfileItem />
-        <ProfileItem />
+        <ProfileItem /> */}
         
         <Box margin={SIZES(50)} />
         {/* <Box marginBottom={SIZES(90)} marginTop={SIZES(10)}>

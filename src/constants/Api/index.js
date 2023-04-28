@@ -9,7 +9,9 @@ export const Apicontants = {
   user:{
     save:'user/save',
     login:"user/login",
-    sentOtp:"user/sentOtp"
+    sentOtp:"user/sentOtp",
+    validate:"user/validateOtp",
+    getAllEmployee:"user/get-all-employees"
   },
   department:{
     getAll:'department/getAll'
@@ -21,6 +23,9 @@ export const Apicontants = {
     getAll:'sublocation/getAll'
   },
   service:{
-    raise:"raiserequest/raiseRequest"
+    raise:"raiserequest/raiseRequest",
+    getAll:"raiserequest/getAll",
+    assign:"raiserequest/assign-request",
+    assignedTask:"raiserequest/assigned-tasks"
   }
 };

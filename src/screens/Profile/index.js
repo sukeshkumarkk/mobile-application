@@ -4,10 +4,14 @@ import {Box, Text, Divider, Card, CardItem, Image} from 'native-base';
 import Header from '../../components/Header';
 import Colors from '../../constants/Colors';
 import {SIZES} from '../../utils/Fonts';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Profile = props => {
-  const goToLogout = () => {
-    props.navigation.navigate('Login');
+
+  const goToLogout = async () => {
+    await AsyncStorage.clear()
+    props.navigation.navigate('DashboardHoc')
+    // props.navigation.navigate('Login');
   };
 
   return (

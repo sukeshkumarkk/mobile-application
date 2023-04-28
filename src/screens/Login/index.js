@@ -5,28 +5,35 @@ import Colors from '../../constants/Colors';
 import CustomButton from '../../components/Button';
 import CustomInput from '../../components/Input';
 import CustomCheckbox from '../../components/Checkbox';
-import { useFormValidation } from "../../Validations/UseFormValidations";
+import { useFormValidation } from '../../Validations/UseFormValidations';
 import { save } from '../../utils/SharedFunctions/SharedFunctions';
 import { Apicontants } from '../../constants/Api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Pressable } from 'react-native';
 
-const Login = props => {
+const Login = (props) => {
   const { data, handleChange } = useFormValidation({});
-  const [empForm, setEmpForm] = useState(true)
+  const [empForm, setEmpForm] = useState(true);
 
   const submit = async () => {
-    console.log(data)
     if (empForm) {
-      let res = await save(Apicontants.user.login, data)
+      let res = await save(Apicontants.user.login, data);
       if (res?.data?.status == true) {
-        props.navigation.navigate('DashboardHoc')
+        await AsyncStorage.setItem('user', JSON.stringify(res?.data?.user));
+        await AsyncStorage.setItem('token', JSON.stringify(res?.data?.token));
+        props.navigation.navigate('DashboardHoc');
       }
     } else {
-      let res = await save(Apicontants.user.login, data)
+      let res = await save(Apicontants.user.sentOtp, data);
+      console.log('move to otp', res);
       if (res?.data?.status == true) {
-        props.navigation.navigate('Otp', { mobile: data?.mobile });
+        props.navigation.navigate('Otp', {
+          mobile: data?.mobile,
+          otp: res?.data?.data?.otp,
+        });
       }
     }
-  }
+  };
 
   return (
     <>
@@ -34,7 +41,8 @@ const Login = props => {
         style={styles.container}
         display={'flex'}
         justifyItems={'center'}
-        alignItems={'center'}>
+        alignItems={'center'}
+      >
         <Image
           source={require('../../assets/horizontal_logo.png')}
           width={SIZES(300)}
@@ -47,7 +55,8 @@ const Login = props => {
           fontFamily={'Montserrat-SemiBold'}
           color={Colors.black}
           fontSize={SIZES(18)}
-          marginTop={SIZES(3)}>
+          marginTop={SIZES(3)}
+        >
           Login Account
         </Text>
         <Text
@@ -55,7 +64,8 @@ const Login = props => {
           fontFamily={'Montserrat-Medium'}
           color={Colors.black}
           fontSize={SIZES(12)}
-          marginTop={SIZES(3)}>
+          marginTop={SIZES(3)}
+        >
           Hello, Welcome back to Service App
         </Text>
         <Box width={SIZES(370)} padding={SIZES(8)}>
@@ -65,26 +75,30 @@ const Login = props => {
                 label={'Emp code'}
                 placeHolder={'Emp code'}
                 value={data?.code}
-                handleOnChange={value => handleChange("code", value)} />
+                handleOnChange={(value) => handleChange('code', value)}
+              />
               <CustomInput
                 label={'Enter Password'}
                 placeHolder={'Enter Password'}
                 value={data?.password}
-                handleOnChange={value => handleChange("password", value)} />
-            </>)
-            : (<>
+                handleOnChange={(value) => handleChange('password', value)}
+              />
+            </>
+          ) : (
+            <>
               <CustomInput
                 label={'Mobile Number'}
                 placeHolder={'Enter Mobile Number'}
                 value={data?.mobile}
-                handleOnChange={value => handleChange("mobile", value)}
+                handleOnChange={(value) => handleChange('mobile', value)}
               />
             </>
-            )
-          }
+          )}
           <CustomCheckbox
             title={'Log With Mobile Number'}
-            handleOnClick={() => { setEmpForm(!empForm) }}
+            handleOnClick={() => {
+              setEmpForm(!empForm);
+            }}
             value={empForm}
           />
         </Box>
@@ -96,6 +110,17 @@ const Login = props => {
             handleOnPress={submit}
           />
         </Box>
+        <Pressable onPress={() => props.navigation.navigate('Register')}>
+          <Text
+            textAlign={'justify'}
+            fontFamily={'Montserrat-SemiBold'}
+            color={Colors.black}
+            fontSize={SIZES(18)}
+            marginTop={SIZES(3)}
+          >
+            Don't have Account?
+          </Text>
+        </Pressable>
       </Box>
     </>
   );

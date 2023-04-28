@@ -1,13 +1,28 @@
 import React, { useEffect } from 'react';
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
-import {SIZES, height} from '../../utils/Fonts/index';
+import { SIZES, height } from '../../utils/Fonts/index';
 import Colors from '../../constants/Colors';
-import {Box, Image, Text} from 'native-base';
+import { Box, Image, Text } from 'native-base';
 import CustomButton from '../../components/Button';
+import { save } from '../../utils/SharedFunctions/SharedFunctions';
+import { Apicontants } from '../../constants/Api';
+import { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Otp = (props) => {
-  const { mobile } = props?.route?.params;
+  const { mobile, otp } = props?.route?.params;
+  const [code, setCode] = useState('')
+
+  const verifyOtp = async () => {
+    console.log(code, otp, "code")
+    let res = await save(Apicontants.user.validate, { mobile: mobile, otp: otp })
+    if (res?.data?.status == true) {
+      await AsyncStorage.setItem("user", JSON.stringify(res?.data?.user))
+      await AsyncStorage.setItem("token",JSON.stringify(res?.data?.token))
+      props.navigation.navigate('DashboardHoc')
+    }
+  }
 
   return (
     <Box
@@ -46,6 +61,9 @@ const Otp = (props) => {
         justifyContent={'center'}
         alignItems={'center'}>
         <OTPInputView
+          onCodeFilled={(code => {
+            setCode(code)
+          })}
           pinCount={4}
           style={styles.otpInput}
           codeInputFieldStyle={styles.underlineStyleBase}
@@ -59,8 +77,8 @@ const Otp = (props) => {
             fontSize={SIZES(13)}
             marginTop={SIZES(3)}
             marginLeft={SIZES(10)}
-            >
-            Didn't recieve the code? 
+          >
+            Didn't recieve the code?
           </Text>
           <Text
             textAlign={'justify'}
@@ -69,7 +87,7 @@ const Otp = (props) => {
             fontSize={SIZES(14)}
             marginTop={SIZES(3)}
             marginLeft={SIZES(1)}
-            >
+          >
             Resend it
           </Text>
         </Box>
@@ -79,9 +97,7 @@ const Otp = (props) => {
           title={'Submit'}
           width={SIZES(320)}
           height={SIZES(43)}
-          handleOnPress={() => {
-            props.navigation.navigate('DashboardHoc')
-          }}
+          handleOnPress={verifyOtp}
         />
       </Box>
     </Box>

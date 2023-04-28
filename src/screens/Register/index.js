@@ -203,6 +203,18 @@ const Register = props => {
               </Box>
             </Box>
           </ScrollView>
+          <Pressable
+            onPress={() => props.navigation.navigate('Login')}
+          >
+            <Text
+              textAlign={'justify'}
+              fontFamily={'Montserrat-SemiBold'}
+              color={Colors.black}
+              fontSize={SIZES(18)}
+              marginTop={SIZES(3)}>
+              Have Account?
+            </Text>
+          </Pressable>
         </Box>
       )}
     </>

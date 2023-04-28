@@ -53,7 +53,7 @@ function StackNavigator() {
     const getUserId = async () => {
       let userToken;
       try {
-        userToken = await AsyncStorage.getItem('userId');
+        userToken = await AsyncStorage.getItem('token');
       } catch (e) {
         console.log(e);
       }
@@ -63,15 +63,17 @@ function StackNavigator() {
   }, []);
 
   const handleSignOut = async () => {
-    await AsyncStorage.removeItem('userId');
+    await AsyncStorage.removeItem('token');
+    await AsyncStorage.removeItem('user');
     dispatch({type: 'SIGN_OUT'});
   };
 
   const handleSignIn = async (mobile, password) => {
     const url = Apicontants.login;
     const response = await postApiCall(url, {mobile, password});
-    if (response.data.status === 'valid') {
-      await AsyncStorage.setItem('userId', response.data.data.user_id);
+    if (response.data.status === true) {
+      await AsyncStorage.setItem("user",JSON.stringify(res?.data?.user))
+      await AsyncStorage.setItem("token",JSON.stringify(res?.data?.token))
       dispatch({type: 'SIGN_IN', token: response.data.data.user_id});
     } else {
       dispatch({type: 'HIDE_LOADER'});

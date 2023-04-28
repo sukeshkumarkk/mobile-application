@@ -1,0 +1,194 @@
+[
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "com.srilalitha.app-main-31:/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.srilalitha.app-main-31:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.srilalitha.app-main-31:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_intro.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_intro.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-xxxhdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-xxxhdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_cancel.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_cancel.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_bell.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_bell.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_home.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_home.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-hdpi_node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-hdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-xhdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-xhdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_user.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_user.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.srilalitha.app-main-31:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_plus.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_plus.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_rect.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_rect.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_logout.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_logout.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_cardimage.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_cardimage.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-hdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-hdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_capture.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_capture.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_doc.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_doc.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_img.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_img.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_gallery.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_gallery.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "com.srilalitha.app-main-31:/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "com.srilalitha.app-main-31:/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backiconmask.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backiconmask.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_node_modules_reactnavigation_elements_src_assets_backiconmask.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/node_modules_reactnavigation_elements_src_assets_backiconmask.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_horizontal_logo.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_horizontal_logo.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable_rn_edit_text_material.xml.flat",
+        "source": "com.srilalitha.app-main-31:/drawable/rn_edit_text_material.xml"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_profile.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_profile.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_money.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_money.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-xhdpi_node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-xhdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-xxhdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-xxhdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_calendar.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_calendar.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "com.srilalitha.app-main-31:/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.srilalitha.app-main-31:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_slider.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_slider.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_camera.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_camera.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_logo.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_logo.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_notes.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_notes.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_filter.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_filter.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_back_white.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_back_white.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.srilalitha.app-main-31:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_active_emp.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_active_emp.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-xxxhdpi_node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-xxxhdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "com.srilalitha.app-main-31:/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-xxhdpi_node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-xxhdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.srilalitha.app-merged_res-30:/drawable-mdpi_src_assets_back.png.flat",
+        "source": "com.srilalitha.app-react-25:/drawable-mdpi/src_assets_back.png"
+    }
+]

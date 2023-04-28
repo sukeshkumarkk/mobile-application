@@ -11,16 +11,15 @@ import ServicesDetails from '../screens/ServicesList/Details';
 import ServicesDetails1 from '../screens/ServicesList/Details1';
 import AssignEmployee from '../screens/AssignEmployee';
 import OrderDetails from '../screens/OrderDetails';
-
-
-
+import ServicesList from '../screens/ServicesList';
+import EmployeeServiceList from '../screens/ServicesList/EmployeeServiceList';
 
 const Stack = createNativeStackNavigator();
 
 function AuthStackNavigator() {
   return (
     <Stack.Navigator
-    initialRouteName="Register"
+    initialRouteName="Intro"
       screenOptions={{
         headerShown: false,
       }}>
@@ -35,6 +34,8 @@ function AuthStackNavigator() {
         component={RaiseServiceSuccess}
       />
       <Stack.Screen name="ServiceDetails" component={ServicesDetails} />
+      <Stack.Screen name="EmployeeServiceList" component={EmployeeServiceList} />
+      <Stack.Screen name="ServiceList" component={ServicesList} />
       <Stack.Screen name="ServiceDetails1" component={ServicesDetails1} />
       <Stack.Screen name="AssignEmployee" component={AssignEmployee} />
       <Stack.Screen name="OrderDetails" component={OrderDetails} />

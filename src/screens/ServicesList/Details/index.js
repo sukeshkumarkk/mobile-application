@@ -1,18 +1,54 @@
-import React, {useState, useRef} from 'react';
-import {StatusBar, ScrollView, TouchableOpacity, Pressable} from 'react-native';
-import {Box, Text, Divider, Card, CardItem, Image} from 'native-base';
+import React, { useState, useRef, useEffect } from 'react';
+import { StatusBar, ScrollView, TouchableOpacity, Pressable } from 'react-native';
+import { Box, Text, Divider, Card, CardItem, Image } from 'native-base';
 import Header from '../../../components/Header';
 import Colors from '../../../constants/Colors';
-import {SIZES} from '../../../utils/Fonts';
+import { SIZES } from '../../../utils/Fonts';
 import ActionSheet from 'react-native-actions-sheet';
 import CustomInput from '../../../components/Input';
+import CustomSelect from '../../../components/SelectPicker';
 import CustomButton from '../../../components/Button';
+import { getItems, getList, getUserfromAS, save } from '../../../utils/SharedFunctions/SharedFunctions';
+import { Apicontants } from '../../../constants/Api';
 const ServicesDetails = props => {
+  const { values } = props?.route?.params;
   const [menu, setMenu] = useState(2);
   const [showRejectMenu, setShowRejectMenu] = useState(false);
   const actionSheetRef = useRef(null);
+  const [employee, setEmployee] = useState([])
+  const [data, setdata] = useState({})
 
-  const ServiceItem = () => {
+  const getAllEmployee = async () => {
+    let res = await getList(Apicontants.user.getAllEmployee)
+    // setEmployee(res?.filter((v)=>v?.departmentId == values?.departmentId))
+    setEmployee(res)
+  }
+
+  const assignTask = async () => {
+    let assignedBy = await getUserfromAS("userId")
+    let body = {
+      status: "5",
+      reqId: values?.reqId,
+      assignedBy: assignedBy,
+      assignedUser: data?.userId
+    }
+    console.log(body, "body")
+    let res = await save(Apicontants.service.assign, body)
+    console.log(res?.data, "data")
+    if(res?.data?.status == true) {
+      props.navigation.navigate('ServicesList',{up:Date.now()});
+      // props.navigation.goBack()
+      // ServiceDetails
+    }
+    // onClosePopup();
+    // setShowRejectMenu(true);
+  }
+
+  useEffect(() => {
+    getAllEmployee()
+  }, [])
+
+  const ServiceItem = ({ values }) => {
     return (
       <Card backgroundColor={Colors.white} padding={3} marginTop={SIZES(3)}>
         <Box display={'flex'} flexDirection={'row'}>
@@ -30,7 +66,7 @@ const ServicesDetails = props => {
               color={Colors.black}
               fontSize={SIZES(12)}
               mt={SIZES(1)}>
-              Department : Electrical
+              Department : {values?.deptName || " - "}
             </Text>
             <Text
               textAlign={'justify'}
@@ -38,14 +74,14 @@ const ServicesDetails = props => {
               color={Colors.lightGrey3}
               fontSize={SIZES(10)}
               mt={SIZES(1)}>
-              SubLocation: Ricemill-1
+              SubLocation: {values?.sublocationName || ' - '}
             </Text>
             <Text
               textAlign={'justify'}
               fontFamily={'Montserrat-Medium'}
               color={Colors.lightGrey3}
               fontSize={SIZES(10)}>
-              Due Date: 05-12-2020
+              Due Date: {values?.dueDate || ' - '}
             </Text>
             <Text
               textAlign={'justify'}
@@ -59,7 +95,7 @@ const ServicesDetails = props => {
               fontFamily={'Montserrat-Medium'}
               color={Colors.lightGrey3}
               fontSize={SIZES(10)}>
-              Description: Ricemill-1
+              Description: {values?.notes || ' - '}
             </Text>
             <Box
               borderBottomWidth={1}
@@ -81,7 +117,7 @@ const ServicesDetails = props => {
                   color={Colors.lightGrey3}
                   fontSize={SIZES(9)}
                   width={SIZES(130)}>
-                  EMP00001(20-11-2022 13:00)
+                  {values?.createdUser || ' - '}
                 </Text>
                 <Text
                   textAlign={'justify'}
@@ -98,7 +134,7 @@ const ServicesDetails = props => {
                 fontFamily={'Montserrat-SemiBold'}
                 color={Colors.primaryColor}
                 fontSize={SIZES(11)}>
-                Pending
+                {values?.status}
               </Text>
             </Box>
           </Box>
@@ -113,6 +149,7 @@ const ServicesDetails = props => {
       : actionSheetRef.current?.show();
   };
 
+
   const onClosePopup = () => {
     actionSheetRef.current?.hide();
   };
@@ -121,6 +158,29 @@ const ServicesDetails = props => {
     return (
       <Box padding={SIZES(5)}>
         <Box>
+
+          <CustomSelect
+            label={'Select Employee'}
+            data={employee}
+            handleGetSelectOptions={data => getItems(data, "userId", "name", "userId")}
+            placeholder={'Select Employee'}
+            handleSetSelectValue={value => setdata({ ...data, "userId": value })}
+            selectedValue={data?.userId}
+          />
+        </Box>
+        <Box>
+          <Text>Description :</Text>
+          <Text
+            textAlign={'justify'}
+            fontFamily={'Montserrat-SemiBold'}
+            color={Colors.black}
+            fontSize={SIZES(18)}
+            marginTop={SIZES(3)}>
+            {values?.notes}
+          </Text>
+        </Box>
+        {/* <Text>{values?.notes}</Text> */}
+        {/* <Box>
           <Text
             fontFamily={'Montserrat-Bold'}
             color={Colors.black}
@@ -137,12 +197,12 @@ const ServicesDetails = props => {
             margin={SIZES(3)}>
             +
           </Box>
-        </Box>
-        <CustomInput
+        </Box> */}
+        {/* <CustomInput
           label={'Description'}
           placeholder={'Description about the service which was assigned'}
           multiline={true}
-        />
+        /> */}
         <Box
           display={'flex'}
           justifyContent={'center'}
@@ -152,10 +212,7 @@ const ServicesDetails = props => {
             title={'Submit'}
             width={SIZES(150)}
             height={SIZES(43)}
-            handleOnPress={() => {
-              onClosePopup();
-              setShowRejectMenu(true);
-            }}
+            handleOnPress={assignTask}
           />
         </Box>
       </Box>
@@ -232,14 +289,16 @@ const ServicesDetails = props => {
           <Image source={require('../../../assets/slider.png')} />
         </Box>
         <Box>
-          <ServiceItem />
+          <ServiceItem values={values} />
         </Box>
 
-        <Box margin={SIZES(50)}>
-          <TouchableOpacity onPress={openPopup}>
-            <Text>Next screen</Text>
-          </TouchableOpacity>
-        </Box>
+        {values?.status == "PENDING" &&
+          <Box margin={SIZES(50)}>
+            <TouchableOpacity onPress={openPopup}>
+              <Text>Assign to USer</Text>
+            </TouchableOpacity>
+          </Box>
+        }
       </ScrollView>
     </>
   );

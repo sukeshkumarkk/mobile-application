@@ -1,5 +1,5 @@
-import React, {useState, useRef} from 'react';
-import {StatusBar, ScrollView, TouchableWithoutFeedback} from 'react-native';
+import React, {useState, useRef, useEffect} from 'react';
+import {StatusBar, ScrollView, TouchableWithoutFeedback,TouchableOpacity} from 'react-native';
 import {Box, Text, Divider, Card, CardItem, Image} from 'native-base';
 import Header from '../../components/Header';
 import Colors from '../../constants/Colors';
@@ -7,24 +7,39 @@ import {SIZES} from '../../utils/Fonts';
 import ActionSheet from 'react-native-actions-sheet';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { getList, getUserfromAS } from '../../utils/SharedFunctions/SharedFunctions';
+import { getpList } from '../../utils/SharedFunctions/SharedFunctions';
+import { Apicontants } from '../../constants/Api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ServicesList = props => {
   const [showFilters, setShowFilters] = useState(true);
   const actionSheetRef = useRef(null);
   const [showPicker, setShowPicker] = useState(false);
+  const [services,setServices] = useState([])
 
-  const goToServiceDetails = () => {
-    props.navigation.navigate('ServiceDetails');
+  const getServices = async () =>{
+    let res = await getpList(Apicontants.service.getAll,{})
+    setServices(res)
+  }
+
+  useEffect(()=>{
+    getServices()
+  },[])
+
+  const goToServiceDetails = (e) => {
+    props.navigation.navigate('ServiceDetails',{ values:e });
   };
 
-  const ServiceItem = () => {
+  const ServiceItem = ({e}) => {
     return (
-      <TouchableWithoutFeedback onPress={goToServiceDetails}>
+      <TouchableWithoutFeedback onPress={()=>goToServiceDetails(e)}>
         <Card backgroundColor={Colors.white} padding={1} marginTop={SIZES(3)}>
           <Box display={'flex'} flexDirection={'row'}>
             <Box>
               <Image
                 source={require('../../assets/cardimage.png')}
+                // source={require(e?.image)}
                 alt={'Card image'}
               />
             </Box>
@@ -42,7 +57,7 @@ const ServicesList = props => {
                 color={Colors.black}
                 fontSize={SIZES(12)}
                 mt={SIZES(1)}>
-                Department : Electrical
+                Department : {e?.deptName || " - "}
               </Text>
               <Text
                 textAlign={'justify'}
@@ -50,14 +65,14 @@ const ServicesList = props => {
                 color={Colors.lightGrey3}
                 fontSize={SIZES(10)}
                 mt={SIZES(1)}>
-                SubLocation: Ricemill-1
+                SubLocation: {e?.sublocationName || " - "}
               </Text>
               <Text
                 textAlign={'justify'}
                 fontFamily={'Montserrat-Medium'}
                 color={Colors.lightGrey3}
                 fontSize={SIZES(10)}>
-                Due Date: 05-12-2020
+                Due Date: {e?.dueDate || " - "}
               </Text>
               <Text
                 textAlign={'justify'}
@@ -71,7 +86,7 @@ const ServicesList = props => {
                 fontFamily={'Montserrat-Medium'}
                 color={Colors.lightGrey3}
                 fontSize={SIZES(10)}>
-                Description: Ricemill-1
+                Description: {e?.notes || " - "}
               </Text>
               <Box
                 borderBottomWidth={1}
@@ -93,7 +108,7 @@ const ServicesList = props => {
                     color={Colors.lightGrey3}
                     fontSize={SIZES(9)}
                     width={SIZES(130)}>
-                    EMP00001(20-11-2022 13:00)
+                    {e?.createdUser || ' - '}
                   </Text>
                   <Text
                     textAlign={'justify'}
@@ -110,7 +125,7 @@ const ServicesList = props => {
                   fontFamily={'Montserrat-SemiBold'}
                   color={Colors.primaryColor}
                   fontSize={SIZES(11)}>
-                  Pending
+                  {e?.status}
                 </Text>
               </Box>
             </Box>
@@ -260,10 +275,11 @@ const ServicesList = props => {
       <ScrollView
         style={styles.scrollviewContainer}
         showsVerticalScrollIndicator={false}>
-        <ServiceItem />
-        <ServiceItem />
-        <ServiceItem />
-        <ServiceItem />
+          {services?.map((e,i)=>{
+            return (
+              <ServiceItem e={e}/>
+            )
+          })}
         <Box margin={SIZES(50)} />
       </ScrollView>
     </>
